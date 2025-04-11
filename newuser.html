@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>New User Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Semantic UI for styling -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #36D1DC, #5B86E5);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .ui.dividing.header {
+            text-align: center;
+            color: #333;
+        }
+        .ui.form .field label {
+            font-weight: bold;
+            color: #555;
+        }
+        .ui.form input, 
+        .ui.form select {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            color: #333;
+        }
+        .ui.form input:focus, 
+        .ui.form select:focus {
+            transform: translateY(-3px);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .ui.blue.button {
+            background-color: #007bff;
+            font-weight: bold;
+            border-radius: 8px;
+            width: 100%;
+        }
+        .ui.blue.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form class="ui form" method="post" action="UploadServlet" enctype="multipart/form-data">
+            <h3 class="ui dividing header">Fill in Information</h3>
+
+            <!-- Name & Password -->
+            <div class="two fields">
+                <div class="field">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="pswd" placeholder="Enter a password" required>
+                </div>
+            </div>
+
+            <!-- Email & Phone Number -->
+            <div class="two fields">
+                <div class="field">
+                    <label>Email ID</label>
+                    <input type="email" name="pemail" placeholder="Email ID" required>
+                </div>
+                <div class="field">
+                    <label>Contact Number</label>
+                    <input type="text" name="pno" pattern="[0-9]{10}" title="Enter a 10-digit phone number" placeholder="Phone number" required>
+                </div>
+            </div>
+
+            <!-- Street & Locality -->
+            <div class="two fields">
+                <div class="field">
+                    <label>Street</label>
+                    <input type="text" name="street" placeholder="Street Address" required>
+                </div>
+                <div class="field">
+                    <label>Locality</label>
+                    <input type="text" name="locality" placeholder="Locality" required>
+                </div>
+            </div>
+
+            <!-- Aadhaar & State -->
+            <div class="two fields">
+                <div class="field">
+                    <label>Aadhaar Number</label>
+                    <input type="text" name="aadhar" pattern="[0-9]{12}" title="Enter a 12-digit Aadhaar number" placeholder="Aadhaar Number" required>
+                </div>
+                <div class="field">
+                    <label>State</label>
+                    <select name="state" required>
+                        <option value="">Select State</option>
+                        <option value="AP">Andhra Pradesh</option>
+                        <option value="KA">Karnataka</option>
+                        <option value="TN">Tamil Nadu</option>
+                        <option value="MH">Maharashtra</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Country & Upload Photo -->
+            <div class="two fields">
+                <div class="field">
+                    <label>Country</label>
+                    <select name="country" required>
+                        <option value="">Select Country</option>
+                        <option value="India">India</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Upload Photo</label>
+<input type="file" name="photo" accept="image/*" required>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="ui blue button">Submit</button>
+        </form>
+    </div>
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has("error")) {
+            alert(urlParams.get("error"));
+        }
+        if (urlParams.has("message")) {
+            alert(urlParams.get("message"));
+            window.location.href = "plogin.jsp";
+        }
+    };
+</script>
+
+</body>
+</html>
